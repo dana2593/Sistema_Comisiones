@@ -40,7 +40,7 @@ sistema_comisiones/
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/TU_USUARIO/sistema-comisiones.git
+git clone https://github.com/dana2593/Sistema_Comisiones
 cd sistema-comisiones
 
 # 2. Crear entorno virtual
@@ -68,9 +68,9 @@ python manage.py runserver
 - Panel admin: http://127.0.0.1:8000/admin/
 
 ## Deploy
-Desplegado en PythonAnywhere: http://TUUSUARIO.pythonanywhere.com/
+Desplegado en PythonAnywhere: https://dana259.pythonanywhere.com
 
 ## Información
-- **Estudiante:** [Tu nombre]
+- **Estudiante:** [Dana Boada]
 - **Materia:** Ingeniería Web
 - **Universidad:** UDLA
