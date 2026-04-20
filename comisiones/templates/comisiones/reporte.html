@@ -1,0 +1,83 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sistema de Comisiones</title>
+    <meta name="description" content="Sistema de Ventas y Comisiones con Django MTV">
+    <link href="{% static 'comisiones/css/estilos.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+
+    <!-- HEADER -->
+    <header>
+      <img id="logo" src="https://www.udla.edu.ec/assets/logo_new.svg" alt="logo udla" />
+      <h1>Sistema de Ventas y Comisiones</h1>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+      <h2>Reporte de Comisiones</h2>
+
+      <!-- Formulario de filtro por fechas -->
+      <form method="GET">
+        <section class="filtro-container">
+          <label for="fecha_inicio">Fecha inicio:</label>
+          <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}">
+
+          <label for="fecha_fin">Fecha fin:</label>
+          <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
+
+          <button type="submit">Filtrar</button>
+        </section>
+      </form>
+
+      <!-- Resultados -->
+      {% if ventas %}
+        <table class="tabla-ventas">
+          <thead>
+            <tr>
+              <th>Vendedor</th>
+              <th>Descripción</th>
+              <th>Fecha</th>
+              <th>Monto Venta</th>
+              <th>Comisión</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for venta in ventas %}
+            <tr>
+              <td>{{ venta.vendedor }}</td>
+              <td>{{ venta.descripcion }}</td>
+              <td>{{ venta.fecha }}</td>
+              <td>${{ venta.monto }}</td>
+              <td>${{ venta.comision|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="fila-total">
+              <td colspan="4">TOTAL COMISIONES</td>
+              <td>${{ total_comisiones|floatformat:2 }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      {% elif fecha_inicio %}
+        <section class="mensaje-vacio">
+          <p>No se encontraron ventas entre {{ fecha_inicio }} y {{ fecha_fin }}.</p>
+        </section>
+
+      {% else %}
+        <section class="mensaje-vacio">
+          <p>Selecciona un rango de fechas para ver el reporte de comisiones.</p>
+        </section>
+      {% endif %}
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>Copyright Ing Web 2026</p>
+    </footer>
+
+  </body>
+</html>
